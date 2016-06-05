@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>BetterFinderBuffer - Theme Designer</title>
+<link href="designer.css" rel="stylesheet" type="text/css" />
+<!--<link href="finds.css" rel="stylesheet" type="text/css" />-->
+
+<link href="Accordian/Accordian.css" rel="stylesheet" type="text/css">
+<script src="Accordian/Accordian.js" type="text/javascript"></script>
+<script src="designer.js" type="text/javascript"></script>
+
+
+</head>
+
+<body>
+<div id="editor">
+	<div id="myAcc" class="Accordian">
+		<h1 data-open=1>Main</h1>
+		<ul>
+			<li><select id="myfont-selector" onchange="findDesigner.applyFontFamily(this)">
+				<option value="Arial">Arial</option>
+				<option value="Helvetica">Helvetica</option>
+				<option value="Courier">Courier</option>
+				<option value="Lucida Console">Lucida Console</option>
+				<option value="Tahoma">Tahoma</option>
+				<option value="Times">Times</option>
+				<option value="Trebuchet MS">Trebuchet MS</option>
+				<option value="Verdana">Verdana</option>
+			</select>
+				<input id="font-main_font-family" type="text" value="Arial"></input> <input id="font-main_font-size" type="number" min="4" max="20" value="12" /> px
+				</li>
+				
+			<li>background <input id="cp-main_background-color" type="color" /><div id="clear-main_background-color" class="clearVal"></div></li>
+			<li>text <input id="cp-main_color" type="color" /><div id="clear-main_color" class="clearVal"></div></li>
+			<li>active line mark <input id="cp-active-line-mark_background-color" type="color" /><div id="clear-active-line-mark_background-color" class="clearVal"></div></li>
+		</ul>
+		<h1>Selection</h1>
+		<ul>
+			<li>background <input id="cp-selection_background-color" type="color" /><div id="clear-selection_background-color" class="clearVal"></div></li>
+			<li>text <input id="cp-selection_color" type="color" /><div id="clear-selection_text" class="clearVal"></div></li>
+			<li>outline <input id="cp-selection_outline-color" type="color" /><div id="clear-selection_outline-color" class="clearVal"></div></li>
+		</ul>
+		<h1>Header</h1>
+		<ul>
+			<li>query term: <input id="cb-query_font-weight" type="checkbox" value="bold"/>bold  <input id="cp-query_color" type="color" /><div id="clear-query_color" class="clearVal"></div></li>
+			<li># files: <input id="cb-results-number_font-weight" type="checkbox" value="bold" />bold <input id="cp-results-number_color" type="color" /><div id="clear-results-number_color" class="clearVal"></div></li>
+		</ul>
+		<h1 data-open=1>Footer</h1>
+		<ul>
+			<li>background <input id="cp-footer_background-color" type="color" /><div id="clear-footer_background-color" class="clearVal"></div></li>
+			<li>text <input id="cp-footer_color" type="color" /><div id="clear-footer_color" class="clearVal"></div></li>
+			<li># matches <input id="cb-footer-count-matches_font-weight" type="checkbox" />bold <input id="cp-footer-count-matches_color" type="color" /><div id="clear-footer-count-matches_color" class="clearVal"></div></li>
+			<li># files <input id="cb-footer-count-files_font-weight" type="checkbox" />bold <input id="cp-footer-count-files_color" type="color" /><div id="clear-footer-count-files_color" class="clearVal"></div></li>
+		</ul>
+		<h1>Lines</h1>
+		<ul>
+			<h2>file path</h2>
+				<li>background <input id="cp-filename_background-color" type="color" /><div id="clear-filename_background-color" class="clearVal"></div></li>
+				<li>text <input id="cp-filename_color" type="color" /><div id="clear-filename_color" class="clearVal"></div></li>
+				
+			<h2>match</h2>
+				<li>background <input id="cp-match-line_background-color" type="color" /><div id="clear-match-line_background-color" class="clearVal"></div></li>
+				<li>text <input id="cp-match-line_color" type="color" /><div id="clear-match-line_color" class="clearVal"></div></li>
+				<li>line # background <input id="cp-line-number-match_background-color" type="color" /><div id="clear-line-number-match_background-color" class="clearVal"></div></li>
+				<li>line # text <input id="cp-line-number-match_color" type="color" /><div id="clear-line-number-match_color" class="clearVal"></div></li>
+				<li>line # colon bkgd <input id="cp-line-number-match-colon_background-color" type="color" /><div id="clear-line-number-match-colon_background-color" class="clearVal"></div></li>
+				<li>line # colon text <input id="cp-line-number-match-colon_color" type="color" /><div id="clear-line-number-match-colon_color" class="clearVal"></div></li>
+				<li>query text outline <input id="cp-caret_outline-color" type="color" /><div id="clear-caret_outline-color" class="clearVal"></div></li>
+			
+			<!-- <h2>line # other lines <input id="cp-line-number-incontext_color" type="color" /><div id="clear-line-number-incontext_color" class="clearVal"></div></h2> -->
+			<h2>non-matching line #&apos;s</h2>
+				<li>line # background <input id="cp-line-number-incontext_background-color" type="color" /><div id="clear-line-number-incontext_background-color" class="clearVal"></div></li>
+				<li>line # text <input id="cp-line-number-incontext_color" type="color" /><div id="clear-line-number-incontext_color" class="clearVal"></div></li>
+				
+		</ul>
+		<h1 data-sticky=1>OUTPUT XML <button id="generate">MAKE</button></h1>
+		<ul id="generateTreeItem">
+			
+			<li>&nbsp;</li>
+			<li>Find Results.sublime-settings<input class="pathString" id="userSettingsPath"></input></li>
+			<li><textarea id="jsonResult" class="resultsData"></textarea></li>
+			
+			<li>&nbsp;</li>
+			<li>MY_THEME.hidden-tmTheme<input class="pathString" id="themePath"></input></li>
+			<li><textarea id="xmlResult" class="resultsData"></textarea></li>
+			<li>&nbsp;</li>
+		</ul>
+	</div>
+</div>
+<div class="main">
+	<div class="line"><span class="line-margin"></span>Searching <span class="results-number">8</span> files for <span class="query">"each"</span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line filename"><span class="line-margin"></span>/Volumes/Drives/library/loot/javascript/frameworks/jquery/jquery-2.1.4/jquery-master/src/attributes/attr.js:</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 16</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 17</span> <span class="tab"></span>removeAttr: function( name ) {</div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match"> 18</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function() {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 19</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>jQuery.removeAttr( this, name );</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 20</span> <span class="tab"></span><span class="tab"></span>});</div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line filename"><span class="line-margin"></span>/Volumes/Drives/library/loot/javascript/frameworks/jquery/jquery-2.1.4/jquery-master/src/attributes/classes.js:</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 20</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 21</span> <span class="tab"></span><span class="tab"></span>if ( jQuery.isFunction( value ) ) {</div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match"> 22</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function( j ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 23</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>jQuery( this ).addClass( value.call( this, j, getClass( this ) ) );</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 24</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>});</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> ..</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 62</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-incontext"> 63</span> <span class="tab"></span><span class="tab"></span>if ( jQuery.isFunction( value ) ) {</span></div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-match"> 64</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function( j ) {</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-incontext"> 65</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>jQuery( this ).removeClass( value.call( this, j, getClass( this ) ) );</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="selection"><span class="line-number-incontext"> 66</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>});</span></div>
+	<div class="line"><span class="line-margin active-line-mark"></span><span class="line-indent"></span><span class="selection"> ..</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">106</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">126</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>while ( ( className = classNames[ i++ ] ) ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">127</span> </div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match">128</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>// Check <span class="caret">each</span> className given, space separated list</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">129</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>if ( self.hasClass( className ) ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">130</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span><span class="tab"></span>self.removeClass( className );</div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line filename"><span class="line-margin"></span>/Volumes/Drives/library/loot/javascript/frameworks/jquery/jquery-2.1.4/jquery-master/src/attributes/val.js:</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 35</span> <span class="tab"></span><span class="tab"></span>isFunction = jQuery.isFunction( value );</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 36</span> </div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match"> 37</span><span class="line-number-match-colon">:</span> <span class="tab"></span><span class="tab"></span>return this.<span class="caret">each</span>(function( i ) {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 38</span> <span class="tab"></span><span class="tab"></span><span class="tab"></span>var val;</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> 39</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext"> ..</span></div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">145</span> </div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">146</span> // Radios and checkboxes getter/setter</div>
+	<div class="line match-line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-match">147</span><span class="line-number-match-colon">:</span> jQuery.<span class="caret">each</span>([ "radio", "checkbox" ], function() {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">148</span> <span class="tab"></span>jQuery.valHooks[ this ] = {</div>
+	<div class="line"><span class="line-margin"></span><span class="line-indent"></span><span class="line-number-incontext">149</span> <span class="tab"></span><span class="tab"></span>set: function( elem, value ) {</div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line footer"><span class="footer-count-matches">6</span> matches across <span class="footer-count-files">3</span> files</div>
+	<div> BetterFindBuffer style designer by <a href="http://www.gieson.com">Mike Gieson</a></div>
+	<!-- force scrollbar to always show -->
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	<div class="line"><span class="line-margin"></span></div>
+	
+</div>
+
+</body>
+</html>

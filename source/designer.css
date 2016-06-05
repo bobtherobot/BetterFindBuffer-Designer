@@ -1,0 +1,75 @@
+html, body {
+	font-family : Helvetica;
+	font-size : 12px;
+}
+
+.tab {
+	display : inline-block;
+	width : 20px;
+}
+.line {
+	height : 1.2em;
+	overflow : hidden;
+	line-height : 1.2em;
+	vertical-align : middle;
+}
+.line-indent {
+	display : inline-block;
+	width : 10px;
+}
+.line-margin {
+	display : inline-block;
+	height : 1.2em;
+	width : 30px;
+	vertical-align : middle;
+}
+#editor {
+	position : fixed;
+	top : 0;
+	right : 0;
+	width : 245px;
+	background-color : #EFEFEF;
+	padding : 0px;
+	border : 1px solid #CCCCCC;
+	
+	
+	-webkit-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	   -moz-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	    -ms-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	     -o-box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	box-shadow:0px 0px 34.062558356676px rgba(0,0,0,0.23677419354838714);
+	
+}
+.Accordian li input[type="color"], .Accordian h2 input, #generate  {
+	position : absolute;
+	right : 30px;
+}
+
+.clearVal  {
+	position : absolute;
+	display : inline-block;
+	right : 15px;
+	color : #FF0000;
+	cursor : pointer;
+}
+.clearVal:before {
+	content : "x";
+}
+.resultsData {
+	width : 90%;
+	height : 100px;
+}
+#myfont-selector {
+	width : 90%;
+	display : inline-block;
+}
+#font-main_font-size {
+	width : 30px;
+}
+.pathString {
+	background-color : #DDDDDD;
+	border : 1px solid #CCCCCC;
+	overflow : hidden;
+	/*height : 18px;*/
+	width : 90%;
+}
