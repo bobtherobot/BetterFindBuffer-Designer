@@ -1,9 +1,9 @@
 # BetterFindBuffer-Designer
 ------------------------
-By Mike Gieson [www.gieson.com](http://www.gieson.com "www.gieson.com")
+By Mike Gieson [www.gieson.com][1]
 
-Preview at:
-http://www.gieson.com/Library/projects/utilities/betterfindbuffer-designer/
+###Preview at:
+[http://www.gieson.com/Library/projects/utilities/betterfindbuffer-designer/][2]
 
 A simple BetterFindBuffer theme editor/designer. This utility will help you define the styles for Sublime Text BetterFindBuffer results view.
 
@@ -34,4 +34,5 @@ In the "sublime-settings" JSON data, adjust the line that contains URI to the "M
 
 Note that you'll have to restart Sublime after each update you make.
 
-
+[1]:http://www.gieson.com
+[2]:http://www.gieson.com/Library/projects/utilities/betterfindbuffer-designer/
