@@ -2,6 +2,9 @@
 ------------------------
 By Mike Gieson [www.gieson.com](http://www.gieson.com "www.gieson.com")
 
+Preview at:
+http://www.gieson.com/Library/projects/utilities/betterfindbuffer-designer/
+
 A simple BetterFindBuffer theme editor/designer. This utility will help you define the styles for Sublime Text BetterFindBuffer results view.
 
 Generates:
