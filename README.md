@@ -35,4 +35,4 @@ In the "sublime-settings" JSON data, adjust the line that contains URI to the "M
 Note that you'll have to restart Sublime after each update you make.
 
 [1]:http://www.gieson.com
-[2]:https://cdn.rawgit.com/bobtherobot/BetterFindBuffer-Designer/master/designer.html
+[2]:http://bobtherobot.github.io/BetterFindBuffer-Designer/
