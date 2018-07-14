@@ -83,6 +83,10 @@ var findDesigner = (function(){
 							"main" : {
 								"font-family" : "Arial",
 								"font-size" : 12
+							},
+							"line" : {
+								"margin-top" : "0px",
+								"margin-bottom" : "0px"
 							}
 						}
 					};
@@ -96,88 +100,97 @@ var findDesigner = (function(){
 	startupTheme.selection["outline-width"] = "1px";
 
 	
-	var fontSettingsTemplate = "";
-	fontSettingsTemplate += '{' + newline;
-	fontSettingsTemplate += '	"color_scheme": "Packages/User/MY_THEME.hidden-tmTheme",' + newline;
-	fontSettingsTemplate += '	"font_face": "__FONT__",' + newline;
-	fontSettingsTemplate += '	"font_size": __SIZE__' + newline;
-	fontSettingsTemplate += '}' + newline;
+	var fontSettingsTemplate = `
+	{
+		"color_scheme": "Packages/User/BetterFindBuffer/Find Results.hidden-tmTheme",
+		"font_face": "__FONT__",
+		"font_size": __SIZE__,
+		"line_padding_top": __PAD_TOP__,
+		"line_padding_bottom": __PAD_BOTTOM__,
+		"draw_indent_guides": false,
+		"gutter": false,
+		"margin": 0,
+		"rulers": [],
+		"spell_check": false,
+		"word_wrap": false
+	}`;
 
-	var xmlFileFront = "";
-	xmlFileFront += '<?xml version="1.0" encoding="UTF-8"?>' + newline;
-	xmlFileFront += '<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' + newline;
-	xmlFileFront += '<plist version="1.0">' + newline;
-	xmlFileFront += '<dict>' + newline;
-	xmlFileFront += '	<key>name</key>' + newline;
-	xmlFileFront += '	<string>Sublime Find Results</string>' + newline;
-	xmlFileFront += '	<key>settings</key>' + newline;
-	xmlFileFront += '	<array>' + newline;
+	var xmlFileFront = `
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Sublime Find Results</string>
+	<key>settings</key>
+	<array>
+`;
 
-	var xmlFileBack = "";
-	xmlFileBack += '	</array>' + newline;
-	xmlFileBack += '	<key>uuid</key>' + newline;
-	xmlFileBack += '	<string>edcc9b28-ac04-4b4a-8fa3-f4be3c0d3b02</string>' + newline;
-	xmlFileBack += '</dict>' + newline;
-	xmlFileBack += '</plist>' + newline;
+	var xmlFileBack = `
+	</array>
+	<key>uuid</key>
+	<string>edcc9b28-ac04-4b4a-8fa3-f4be3c0d3b02</string>
+</dict>
+</plist>
+`;
 	
-	var xmlTemplate = "";
-	xmlTemplate += '	<dict>' + newline;
-	xmlTemplate += '		<key>scope</key>' + newline;
-	xmlTemplate += '		<string>__SCOPE__</string>' + newline;
-	xmlTemplate += '		<key>settings</key>' + newline;
-	xmlTemplate += '		<dict>' + newline;
-	xmlTemplate += '__LIST__' + newline;
-	//xmlTemplate += '			<key>foreground</key>' + newline;
-	//xmlTemplate += '			<string>#660099</string>' + newline;
-	//xmlTemplate += '			<key>fontStyle</key>' + newline;
-	//xmlTemplate += '			<string>bold</string>' + newline;
-	xmlTemplate += '		</dict>' + newline;
-	xmlTemplate += '	</dict>' + newline;
+	var xmlTemplate = `
+	<dict>
+		<key>scope</key>
+		<string>__SCOPE__</string>
+		<key>settings</key>
+		<dict>
+__LIST__
+		</dict>
+	</dict>
+`;
 	
-	var xmlTemplateSettings = "";
-	xmlTemplateSettings += '	<dict>' + newline;
-	xmlTemplateSettings += '		<key>settings</key>' + newline;
-	xmlTemplateSettings += '		<dict>' + newline;
-	xmlTemplateSettings += '__LIST__' + newline;
-	xmlTemplateSettings += '		</dict>' + newline;
-	xmlTemplateSettings += '	</dict>' + newline;
-
+	var xmlTemplateSettings = `
+	<dict>
+		<key>settings</key>
+		<dict>
+__LIST__
+		</dict>
+	</dict>
+`;
 
 	
 	var cssToSub = {
-		"main_font-family" : "font > family",
-		"main_font-size" : "font > size",
-		"main_background-color" : "settings > background",
-		"main_color" : "settings > foreground",
-		"caret_outline-color" : "settings > caret",
-		"selection_background-color" : "settings > selection",
-		"selection_outline-color" : "settings > selectionBorder",
-		"selection_color" : "settings > selectionForeground",
+		"main_font-family" 					: "font > family",
+		"main_font-size" 					: "font > size",
+		"main_margin-top" 					: "font > margin-top",
+		"main_margin-bottom" 				: "font > margin-bottom",
+		"main_background-color" 			: "settings > background",
+		"main_color" 						: "settings > foreground",
+		"caret_outline-color" 				: "settings > caret",
+		"selection_background-color" 		: "settings > selection",
+		"selection_outline-color" 			: "settings > selectionBorder",
+		"selection_color" 					: "settings > selectionForeground",
 		"active-line-mark_background-color" : "settings > lineHighlight",
-		"query_color" : "string.query.find-in-files > foreground",
-		"query_font-weight" : "string.query.find-in-files > fontStyle",
-		"results-number_color" : "variable.total_files_count.find-in-files > foreground",
-		"results-number_font-weight" : "variable.total_files_count.find-in-files > fontStyle",
-		"filename_color" : "entity.name.filename.find-in-files > foreground",
-		"filename_background-color" : "entity.name.filename.find-in-files > background",
+		"query_color" 						: "string.query.find-in-files > foreground",
+		"query_font-weight" 				: "string.query.find-in-files > fontStyle",
+		"results-number_color" 				: "variable.total_files_count.find-in-files > foreground",
+		"results-number_font-weight" 		: "variable.total_files_count.find-in-files > fontStyle",
+		"filename_color" 					: "entity.name.filename.find-in-files > foreground",
+		"filename_background-color" 		: "entity.name.filename.find-in-files > background",
 	
-		"footer_color" : "footer.find-in-files > foreground",
-		"footer_background-color" : "footer.find-in-files > background",
-		"footer-count-matches_color" : "variable.matched_count.find-in-files > foreground",
-		"footer-count-matches_font-weight" : "variable.matched_count.find-in-files > fontStyle",
-		"footer-count-files_color" : "variable.matched_files_count.find-in-files > foreground",
-		"footer-count-files_font-weight" : "variable.matched_files_count.find-in-files > fontStyle",
+		"footer_color" 						: "footer.find-in-files > foreground",
+		"footer_background-color" 			: "footer.find-in-files > background",
+		"footer-count-matches_color" 		: "variable.matched_count.find-in-files > foreground",
+		"footer-count-matches_font-weight" 	: "variable.matched_count.find-in-files > fontStyle",
+		"footer-count-files_color" 			: "variable.matched_files_count.find-in-files > foreground",
+		"footer-count-files_font-weight" 	: "variable.matched_files_count.find-in-files > fontStyle",
 	
-		"filename_color" : "entity.name.filename.find-in-files > foreground",
-		"filename_background-color" : "entity.name.filename.find-in-files > background",
+		"filename_color" 					: "entity.name.filename.find-in-files > foreground",
+		"filename_background-color" 		: "entity.name.filename.find-in-files > background",
 	
-		"match-line_color" : "match.find-in-files > foreground",
-		"match-line_background-color" : "match.find-in-files > background",
-		"line-number-match_color" : "constant.numeric.line-number.match.find-in-files > foreground",
+		"match-line_color" 					: "match.find-in-files > foreground",
+		"match-line_background-color" 		: "match.find-in-files > background",
+		"line-number-match_color" 			: "constant.numeric.line-number.match.find-in-files > foreground",
 		"line-number-match_background-color" : "constant.numeric.line-number.match.find-in-files > background",
-		"line-number-match-colon_color" : "punctuation.line-number.match.find-in-files > foreground",
+		"line-number-match-colon_color" 	: "punctuation.line-number.match.find-in-files > foreground",
 		"line-number-match-colon_background-color" : "punctuation.line-number.match.find-in-files > background",
-		"line-number-incontext_color" : "constant.numeric.line-number.find-in-files > foreground",
+		"line-number-incontext_color" 		: "constant.numeric.line-number.find-in-files > foreground",
 		"line-number-incontext_background-color" : "constant.numeric.line-number.find-in-files > background"
 	};
 
@@ -285,8 +298,16 @@ var findDesigner = (function(){
 	
 	function updateFontSize(e){
 		var targ = e.target;
+		console.log("targ.dataset.iid", targ.dataset.iid)
 		var val = parseFloat(targ.value) + "px";
 		updateEverything(targ.dataset.iid, val);
+	}
+
+	function updateFontPadding(e){
+		var targ = e.target;
+		console.log("targ.dataset.iid", targ.dataset.iid)
+		var val = parseFloat(targ.value) + "px";
+		updateEverything(targ.dataset.iid, val, "line");
 	}
 	
 	function clearColor(e){
@@ -297,9 +318,11 @@ var findDesigner = (function(){
 		updateEverything(iid, null, "color");
 	}
 	
-	function updateEverything(iid, val){
+	function updateEverything(iid, val, phoRule){
 		var obj = ccsMap[iid];
-		myRules[obj.rule][obj.style] = val;
+		console.log(phoRule, iid, val, obj);
+
+		myRules[phoRule || obj.rule][obj.style] = val;
 		obj.val = val;
 	
 		clearXML();
@@ -347,9 +370,11 @@ var findDesigner = (function(){
 		xml += xmlFileBack;
 		xmlResult.value = xml;
 		
-		
+		console.log(subObj)
 		var json = fontSettingsTemplate.replace(/__FONT__/g, subObj.font.family);
 		json = json.replace(/__SIZE__/g, subObj.font.size.replace("px", ""));
+		json = json.replace(/__PAD_TOP__/g, (subObj.font["margin-top"] || "0").replace("px", ""));
+		json = json.replace(/__PAD_BOTTOM__/g, (subObj.font["margin-bottom"] || "0").replace("px", ""));
 		jsonResult.value = json;
 		
 		
@@ -441,6 +466,8 @@ var findDesigner = (function(){
 		var controls 	= [].concat(colorInputs, bolders);
 		controls.push(document.getElementById("font-main_font-family"));
 		controls.push(document.getElementById("font-main_font-size"));
+		controls.push(document.getElementById("font-main_margin-top"));
+		controls.push(document.getElementById("font-main_margin-bottom"));
 		
 		
 		for(var i=0; i<controls.length; i++){
@@ -492,6 +519,8 @@ var findDesigner = (function(){
 			} else if (kind == "font"){
 				if( /family/.test(id) ) {
 					func = updateFontFamily;
+				} else if( /margin/.test(id) ) {
+					func = updateFontPadding;
 				} else {
 					func = updateFontSize;
 				}
@@ -522,9 +551,16 @@ var findDesigner = (function(){
 		// gotta man-handle the font size 
 		var iid = "main_font-size";
 		updateEverything(iid, ccsMap[iid].val + "px");
+
+		iid = "main_margin-top";
+		updateEverything(iid, (ccsMap[iid].val || "0") + "px");
+
+		iid = "main_margin-bottom";
+		updateEverything(iid, (ccsMap[iid].val || "0") + "px");
 		
 	}
 	
+
 
 	
 	return {

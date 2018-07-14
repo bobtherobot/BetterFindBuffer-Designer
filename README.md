@@ -1,8 +1,7 @@
-# BetterFindBuffer-Designer
-------------------------
-By Mike Gieson [www.gieson.com][1]
+# BetterFindBuffer-Designer 
+v3 - By Mike Gieson [www.gieson.com][1]
 
-###Run it:
+## Run it:
 [Click to launch utility][2]
 
 A simple BetterFindBuffer theme editor/designer. This utility will help you define the styles for Sublime Text BetterFindBuffer results view.
@@ -18,21 +17,26 @@ After adjusting the setup, click the "MAKE" button to generate the code. You'll 
 
 Both of these files usually reside in your "Packages/User" folder, generally in following location:
 
-##### PC
-```
-    C:\Users\%username%\AppData\Roaming\Sublime Text 3\Packages\User\
-```	
+## PC
 
-##### Mac/Linux?
-```
-/Users/YOUR_USER_NAME/Library/Application Support/Sublime Text 3/Packages/User/
-```
+    C:\Users\%username%\AppData\Roaming\Sublime Text 3\Packages\User\
+
+
+## Mac/Linux?
+
+	/Users/YOUR_USER_NAME/Library/Application Support/Sublime Text 3/Packages/User/
+
 
 You'll need to do a little editing in the resulting code in order to point to the proper theme file. (so you'll have to do a little work).
 
 In the "sublime-settings" JSON data, adjust the line that contains URI to the "MY_THEME" file.
 
 Note that you'll have to restart Sublime after each update you make.
+
+## Release Notes
+
+v3 - 2016/07/14
+- added padding settings
 
 [1]:http://www.gieson.com
 [2]:http://bobtherobot.github.io/BetterFindBuffer-Designer/

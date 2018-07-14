@@ -73,3 +73,11 @@ html, body {
 	/*height : 18px;*/
 	width : 90%;
 }
+.linePaddingAlign {
+	display : inline-block;
+	width : 132px;
+}
+
+.smallNumber {
+	width : 55px;
+}
